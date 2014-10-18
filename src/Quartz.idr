@@ -138,29 +138,31 @@ JKeyCode = 0x26
 KKeyCode : Int
 KKeyCode = 0x28
 
+-- MMKey KeyCode Alt Cmd Ctrl Shift
+
 CmdShiftSpacebar : Key
 CmdShiftSpacebar = MkKey SpacebarKeyCode False True False True
+
+CmdJKey : Key
+CmdJKey = MkKey JKeyCode False True False False
 
 CmdShiftJKey : Key
 CmdShiftJKey = MkKey JKeyCode False True False True
 
-CmdShiftOptionJKey : Key
-CmdShiftOptionJKey = MkKey JKeyCode True True False True
+CmdKKey : Key
+CmdKKey = MkKey KKeyCode False True False False
 
 CmdShiftKKey : Key
 CmdShiftKKey = MkKey KKeyCode False True False True
-
-CmdShiftOptionKKey : Key
-CmdShiftOptionKKey = MkKey KKeyCode True True False True
 
 quartzConf : IRConf QuartzWindow QuartzSpace
 quartzConf =
   MkIRConf (fromList [
     (CmdShiftSpacebar, update nextLayout >>= \_ => refresh)
-  , (CmdShiftJKey, windows focusUp)
-  , (CmdShiftKKey, windows focusDown)
-  , (CmdShiftOptionJKey, windows swapUp)
-  , (CmdShiftOptionKKey, windows swapDown)
+  , (CmdJKey, windows focusUp)
+  , (CmdKKey, windows focusDown)
+  , (CmdShiftJKey, windows swapUp)
+  , (CmdShiftKKey, windows swapDown)
   ])
 
 partial
