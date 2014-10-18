@@ -116,11 +116,17 @@ instance Handler (IREffect QuartzWindow QuartzSpace) IO where
     f <- quartzGetFrames
     k f ()
 
+layouts : Vect 3 (LayoutF wid)
+layouts = [ mirrorLayout masterLayout
+          , columnLayout
+          , fullLayout
+          ]
+
 initialQuartzState : IO (IRState QuartzWindow QuartzSpace)
 initialQuartzState = do
   (_ ** frame :: _) <- quartzGetFrames
   (wids, _) <- quartzGetWindows
-  let workspace : Workspace QuartzWindow = foldr manage (MkWorkspace (choose [columnLayout, mirrorLayout columnLayout, fullLayout]) Nothing) wids
+  let workspace : Workspace QuartzWindow = foldr manage (MkWorkspace (choose layouts) Nothing) wids
   return (MkIRState (MkStackSet (MkScreen workspace 0 frame) [] []))
 
 SpacebarKeyCode : Int
