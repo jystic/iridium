@@ -138,29 +138,29 @@ JKeyCode = 0x26
 KKeyCode : Int
 KKeyCode = 0x28
 
-CmdOptionSpacebar : Key
-CmdOptionSpacebar = MkKey SpacebarKeyCode True True False False
+CmdShiftSpacebar : Key
+CmdShiftSpacebar = MkKey SpacebarKeyCode False True False True
 
-CmdOptionJKey : Key
-CmdOptionJKey = MkKey JKeyCode True True False False
+CmdShiftJKey : Key
+CmdShiftJKey = MkKey JKeyCode False True False True
 
-CmdOptionShiftJKey : Key
-CmdOptionShiftJKey = MkKey JKeyCode True True False True
+CmdShiftOptionJKey : Key
+CmdShiftOptionJKey = MkKey JKeyCode True True False True
 
-CmdOptionKKey : Key
-CmdOptionKKey = MkKey KKeyCode True True False False
+CmdShiftKKey : Key
+CmdShiftKKey = MkKey KKeyCode False True False True
 
-CmdOptionShiftKKey : Key
-CmdOptionShiftKKey = MkKey KKeyCode True True False True
+CmdShiftOptionKKey : Key
+CmdShiftOptionKKey = MkKey KKeyCode True True False True
 
 quartzConf : IRConf QuartzWindow QuartzSpace
 quartzConf =
   MkIRConf (fromList [
-    (CmdOptionSpacebar, update nextLayout >>= \_ => refresh)
-  , (CmdOptionJKey, windows focusUp)
-  , (CmdOptionKKey, windows focusDown)
-  , (CmdOptionShiftJKey, windows swapUp)
-  , (CmdOptionShiftKKey, windows swapDown)
+    (CmdShiftSpacebar, update nextLayout >>= \_ => refresh)
+  , (CmdShiftJKey, windows focusUp)
+  , (CmdShiftKKey, windows focusDown)
+  , (CmdShiftOptionJKey, windows swapUp)
+  , (CmdShiftOptionKKey, windows swapDown)
   ])
 
 partial
