@@ -151,10 +151,10 @@ quartzConf : IRConf QuartzWindow QuartzSpace
 quartzConf =
   MkIRConf (fromList [
     (CmdOptionSpacebar, update nextLayout >>= \_ => refresh)
-  , (CmdOptionJKey, windows focusDown)
-  , (CmdOptionKKey, windows focusUp)
-  , (CmdOptionShiftJKey, windows swapDown)
-  , (CmdOptionShiftKKey, windows swapUp)
+  , (CmdOptionJKey, windows focusUp)
+  , (CmdOptionKKey, windows focusDown)
+  , (CmdOptionShiftJKey, windows swapUp)
+  , (CmdOptionShiftKKey, windows swapDown)
   ])
 
 partial
